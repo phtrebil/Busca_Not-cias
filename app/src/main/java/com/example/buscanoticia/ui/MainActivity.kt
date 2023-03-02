@@ -1,7 +1,8 @@
-package com.example.buscanoticia
+package com.example.buscanoticia.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.buscanoticia.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
