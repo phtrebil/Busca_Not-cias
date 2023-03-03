@@ -1,4 +1,4 @@
-package com.example.buscanoticia.ui
+package com.example.buscanoticia.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
