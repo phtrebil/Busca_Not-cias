@@ -10,7 +10,7 @@ interface BuscaNoticiaApi {
     @GET("api/")
     fun buscaNoticia(
         @Query("q") noticia: String?,
-        @Query("date") data: String
+        @Query("date") data: String?
     ): Call<BuscaNoticiaResponse>
 
 }

@@ -18,7 +18,7 @@ class BuscaNoticiaRepository(
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    fun buscaNews(listener: OnClickButton, assuntoNoticia: String, dataNoticia: String){
+    fun buscaNews(listener: OnClickButton, assuntoNoticia: String?, dataNoticia: String?){
         val noticiaService = resposta.create(BuscaNoticiaApi::class.java)
         val call: Call<BuscaNoticiaResponse> = noticiaService.buscaNoticia(assuntoNoticia, dataNoticia)
         call.enqueue(object: Callback<BuscaNoticiaResponse>{

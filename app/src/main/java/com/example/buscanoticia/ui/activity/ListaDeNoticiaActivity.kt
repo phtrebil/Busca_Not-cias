@@ -2,8 +2,13 @@ package com.example.buscanoticia.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.buscanoticia.R
+import com.example.buscanoticia.data.remote.BuscaNoticiaRepository
 import com.example.buscanoticia.databinding.ActivityListaDeNoticiaBinding
+import com.example.buscanoticia.listeners.OnClickButton
+import com.example.buscanoticia.model.BuscaNoticiaResponse
 import com.example.buscanoticia.ui.adapter.ListaDeNoticiaAdapter
 
 class ListaDeNoticiaActivity : AppCompatActivity() {
@@ -12,9 +17,41 @@ class ListaDeNoticiaActivity : AppCompatActivity() {
         ActivityListaDeNoticiaBinding.inflate(layoutInflater)
     }
     var adapter = ListaDeNoticiaAdapter(this)
+    val buscaNoticiaRepository = BuscaNoticiaRepository(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        buscaApi()
+
+        binding.rvListaDeNoticias.layoutManager = LinearLayoutManager(baseContext)
+        binding.rvListaDeNoticias.adapter = adapter
+
+
+    }
+
+    private fun buscaApi() {
+
+        binding.pesquisar.setOnClickListener {
+            val noticia = binding.buscaNotCia.text.toString()
+            val data = binding.buscaData.text.toString()
+            buscaNoticiaRepository.buscaNews(listener, noticia, data)
+        }
+    }
+
+    val listener = object: OnClickButton {
+        override fun onResponse(resposta: BuscaNoticiaResponse?) {
+            if(resposta == null){
+                Toast.makeText(baseContext, "Resposta nula", Toast.LENGTH_SHORT).show()
+                return
+            }
+            resposta?.let { adapter.atualiza(it.list) }
+
+        }
+
+        override fun onError(mensagem: String?) {
+            Toast.makeText(baseContext, "Um Erro aconteceu", Toast.LENGTH_SHORT).show()
+        }
+
     }
 }

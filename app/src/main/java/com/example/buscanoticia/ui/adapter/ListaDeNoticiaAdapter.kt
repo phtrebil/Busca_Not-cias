@@ -26,4 +26,10 @@ class ListaDeNoticiaAdapter(
         val noticia = noticias[position]
         holder.vincula(noticia)
     }
+
+    fun atualiza(noticias: List<Noticias>) {
+        this.noticias.clear()
+        this.noticias.addAll(noticias)
+        notifyDataSetChanged()
+    }
 }
