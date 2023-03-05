@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/brown"
+    android:background="@color/purple_200"
     tools:context=".ui.activity.ListaDeNoticiaActivity">
 
 
@@ -18,24 +18,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardview"
+        app:layout_constraintTop_toBottomOf="@+id/constrain_layout"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item__lista_de_noticias" />
 
-    <androidx.cardview.widget.CardView
-            android:id="@+id/cardview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constrain_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/brown"
-                >
+                android:background="@color/purple_200"
+                android:layout_margin="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layout_busca_notícia"
                     android:layout_width="match_parent"
@@ -83,14 +80,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:backgroundTint="@color/purple_200"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/purple_700"
                     app:layout_constraintTop_toBottomOf="@id/layout_data"
                     app:layout_constraintStart_toStartOf="@id/layout_data"
                     app:layout_constraintEnd_toEndOf="@id/layout_data"
                     android:text="Pesquisar"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+
 
 
 
