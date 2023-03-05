@@ -1,10 +1,11 @@
 package com.example.buscanoticia.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.buscanoticia.R
 import com.example.buscanoticia.data.remote.BuscaNoticiaRepository
 import com.example.buscanoticia.databinding.ActivityListaDeNoticiaBinding
 import com.example.buscanoticia.listeners.OnClickButton
@@ -24,10 +25,19 @@ class ListaDeNoticiaActivity : AppCompatActivity() {
         setContentView(binding.root)
         buscaApi()
 
+        configuraRecyclerView()
+
+
+    }
+
+    private fun configuraRecyclerView() {
         binding.rvListaDeNoticias.layoutManager = LinearLayoutManager(baseContext)
         binding.rvListaDeNoticias.adapter = adapter
-
-
+        adapter.quandoClicaNoItem = {
+            val i = Intent(Intent.ACTION_VIEW)
+            i.setData(Uri.parse(it.link))
+            startActivity(i)
+        }
     }
 
     private fun buscaApi() {

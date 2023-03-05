@@ -9,8 +9,10 @@ import com.example.buscanoticia.model.Noticias
 
 class ListaDeNoticiaAdapter(
     val context: Context,
-    noticias: List<Noticias> = emptyList()
-): RecyclerView.Adapter<NoticiaViewHolder>() {
+    noticias: List<Noticias> = emptyList(),
+    var quandoClicaNoItem: (noticia: Noticias) -> Unit = {}
+
+): RecyclerView.Adapter<ListaDeNoticiaAdapter.NoticiaViewHolder>() {
 
     val noticias = noticias.toMutableList()
 
@@ -32,4 +34,28 @@ class ListaDeNoticiaAdapter(
         this.noticias.addAll(noticias)
         notifyDataSetChanged()
     }
+
+    inner class NoticiaViewHolder(
+        private val binding: ItemListaDeNoticiasBinding
+    ): RecyclerView.ViewHolder(binding.root) {
+
+        private lateinit var noticia: Noticias
+
+        init {
+            itemView.setOnClickListener {
+                if(::noticia.isInitialized){
+                    quandoClicaNoItem(noticia)
+                }
+            }
+        }
+
+        fun vincula(noticia: Noticias) {
+            this.noticia = noticia
+            binding.manchete.text = noticia.title
+            binding.dataNoticia.text = noticia.date
+        }
+
+    }
+
+
 }
