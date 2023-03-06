@@ -6,4 +6,7 @@ class Noticias(
     val date: String
 ) {
 
+
 }
+
+

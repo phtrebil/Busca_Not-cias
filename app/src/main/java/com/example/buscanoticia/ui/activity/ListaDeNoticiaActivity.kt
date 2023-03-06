@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.buscanoticia.data.remote.BuscaNoticiaRepository
 import com.example.buscanoticia.databinding.ActivityListaDeNoticiaBinding
+import com.example.buscanoticia.formatador.FormatadorDeEspacos
 import com.example.buscanoticia.listeners.OnClickButton
 import com.example.buscanoticia.model.BuscaNoticiaResponse
 import com.example.buscanoticia.ui.adapter.ListaDeNoticiaAdapter
@@ -45,7 +46,8 @@ class ListaDeNoticiaActivity : AppCompatActivity() {
         binding.pesquisar.setOnClickListener {
             val noticia = binding.buscaNotCia.text.toString()
             val data = binding.buscaData.text.toString()
-            buscaNoticiaRepository.buscaNews(listener, noticia, data)
+            val noticiaSemEspaco = FormatadorDeEspacos(noticia).tiraEspaco()
+            buscaNoticiaRepository.buscaNews(listener, noticiaSemEspaco, data)
         }
     }
 
