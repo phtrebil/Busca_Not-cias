@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="@color/material_dynamic_neutral80"
     tools:context=".ui.activity.ListaDeNoticiaActivity">
 
 
@@ -27,7 +27,6 @@
                 android:id="@+id/constrain_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/purple_200"
                 android:layout_margin="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +52,7 @@
 
 
                 </com.google.android.material.textfield.TextInputLayout>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layout_data"
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:textColor="@color/white"
-                    android:backgroundTint="@color/purple_700"
+                    android:backgroundTint="@color/material_dynamic_neutral40"
                     app:layout_constraintTop_toBottomOf="@id/layout_data"
                     app:layout_constraintStart_toStartOf="@id/layout_data"
                     app:layout_constraintEnd_toEndOf="@id/layout_data"

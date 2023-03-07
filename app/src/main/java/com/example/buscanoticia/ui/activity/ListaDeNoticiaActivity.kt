@@ -1,5 +1,6 @@
 package com.example.buscanoticia.ui.activity
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,24 +13,77 @@ import com.example.buscanoticia.formatador.FormatadorDeEspacos
 import com.example.buscanoticia.listeners.OnClickButton
 import com.example.buscanoticia.model.BuscaNoticiaResponse
 import com.example.buscanoticia.ui.adapter.ListaDeNoticiaAdapter
+import java.util.*
+
 
 class ListaDeNoticiaActivity : AppCompatActivity() {
+
 
     private val binding by lazy {
         ActivityListaDeNoticiaBinding.inflate(layoutInflater)
     }
     var adapter = ListaDeNoticiaAdapter(this)
     val buscaNoticiaRepository = BuscaNoticiaRepository(this)
+    var buscaData = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         buscaApi()
-
         configuraRecyclerView()
-
+        carregaCalendario()
 
     }
+
+    private fun carregaCalendario() {
+        val calendario = Calendar.getInstance()
+        val datePicker = DatePickerDialog.OnDateSetListener { datePicker, ano, mes, dia ->
+            formataCalendario(mes, calendario, ano, dia)
+        }
+
+        mostraCalendario(datePicker, calendario)
+    }
+
+    private fun mostraCalendario(
+        datePicker: DatePickerDialog.OnDateSetListener,
+        calendario: Calendar
+    ) {
+        binding.buscaData.setOnClickListener {
+            DatePickerDialog(
+                this,
+                datePicker,
+                calendario.get(Calendar.YEAR),
+                calendario.get(Calendar.MONTH),
+                calendario.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+    }
+
+    private fun formataCalendario(
+        mes: Int,
+        calendario: Calendar,
+        ano: Int,
+        dia: Int
+    ) {
+        val messs = mes + 1
+
+        calendario.set(Calendar.YEAR, ano)
+        calendario.set(Calendar.MONTH, messs)
+        calendario.set(Calendar.DAY_OF_MONTH, dia)
+
+
+        var diaa = "${dia}"
+        var mess = "${messs}"
+        if (dia < 10) {
+            diaa = "0" + dia
+        }
+        if (mes < 10) {
+            mess = "0" + messs
+        }
+        buscaData = "${diaa}/${mess}/${ano}"
+        binding.buscaData.setText(buscaData)
+    }
+
 
     private fun configuraRecyclerView() {
         binding.rvListaDeNoticias.layoutManager = LinearLayoutManager(baseContext)
@@ -45,9 +99,8 @@ class ListaDeNoticiaActivity : AppCompatActivity() {
 
         binding.pesquisar.setOnClickListener {
             val noticia = binding.buscaNotCia.text.toString()
-            val data = binding.buscaData.text.toString()
             val noticiaSemEspaco = FormatadorDeEspacos(noticia).tiraEspaco()
-            buscaNoticiaRepository.buscaNews(listener, noticiaSemEspaco, data)
+            buscaNoticiaRepository.buscaNews(listener, noticiaSemEspaco, buscaData)
         }
     }
 
@@ -67,3 +120,5 @@ class ListaDeNoticiaActivity : AppCompatActivity() {
 
     }
 }
+
+
