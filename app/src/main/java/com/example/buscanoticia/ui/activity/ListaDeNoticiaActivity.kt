@@ -3,8 +3,10 @@ package com.example.buscanoticia.ui.activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.buscanoticia.data.remote.BuscaNoticiaRepository
@@ -13,6 +15,7 @@ import com.example.buscanoticia.formatador.FormatadorDeEspacos
 import com.example.buscanoticia.listeners.OnClickButton
 import com.example.buscanoticia.model.BuscaNoticiaResponse
 import com.example.buscanoticia.ui.adapter.ListaDeNoticiaAdapter
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -59,6 +62,7 @@ class ListaDeNoticiaActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun formataCalendario(
         mes: Int,
         calendario: Calendar,
@@ -80,7 +84,8 @@ class ListaDeNoticiaActivity : AppCompatActivity() {
         if (mes < 10) {
             mess = "0" + messs
         }
-        buscaData = "${diaa}/${mess}/${ano}"
+        buscaData = "${dia}/${mes}/${ano}"
+
         binding.buscaData.setText(buscaData)
     }
 
@@ -120,5 +125,6 @@ class ListaDeNoticiaActivity : AppCompatActivity() {
 
     }
 }
+
 
 
