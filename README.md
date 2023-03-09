@@ -5,11 +5,6 @@ Aplicativo que faz busca de notícias e abre link no navegador quando clicado.
 App consome uma api Web para realizar a busca de notícias por meio de seu título e data. 
 
 Após realizada a busca, é possível clicar na manchete da notícia e abri-la em seu navegador.
-O app ainda não está finalizado. Pretende-se corrigir alguns bugs, impedir que o usuário escreve na linha de data, abrir o calendário com um único click no editText de data (atualmente é necessário 2 clicks).
-
-<h4 align="center"> 
-:construction: Projeto em construção :construction:
-</h4>
 
 <h5>
 Tela de Busca de Notícias
@@ -29,15 +24,14 @@ Implementado
 - TextInput Layout para as informações de data e assunto da notícia.
 - Botão que iniciará o procedimento de busca.
 - Os espaços das palavras são redirados para realizar a busca na Api.
-
-<h5>
-A Implementar
-</h5>
-
-
-
 -  Abrir o calendário com um único click
--  Impedir que o usuário digite na barra de pesquisa de datas..
+-  Impedir que o usuário digite na barra de pesquisa de datas.
+
+
+
+
+
+
 
 
 
